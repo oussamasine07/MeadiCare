@@ -1,2 +1,2 @@
 # medicare
-![Use case uml diagram](./uml/use%20case.png)
+![Use case uml diagram](./uml/use_case.png)
