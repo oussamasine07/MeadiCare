@@ -67,7 +67,31 @@
                    </thead>
 
                    <tbody>
-
+                        <c:forEach var="patient" items="${ patients }">
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <c:out value="${patient.id}" />
+                                </th>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <c:out value="${patient.name}" />
+                                </th>
+                                <td class="px-6 py-4">
+                                    <c:out value="${patient.username}" />
+                                </td>
+                                <td class="px-6 py-4">
+                                    <c:out value="${patient.email}" />
+                                </td>
+                                <td class="px-6 py-4">
+                                    <c:out value="${patient.phone}" />
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="/MediCare/update?id=<c:out value='${patient.id}' />">Edit</a>
+                                    <form action="/MediCare/delete?id=<c:out value='${patient.id}' />" method="POST">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
                    </tbody>
                </table>
            </div>
