@@ -9,14 +9,23 @@
      version="3.0"
 >
   <display-name>Archetype Created Web Application</display-name>
-  <el-ignored>false</el-ignored>
+
   <servlet>
     <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>com.home.controller.HomeServlet</servlet-class>
+    <servlet-class>com.medicare.home.controller.HomeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>IndexPatientServlet</servlet-name>
+    <servlet-class>com.medicare.patient.controller.IndexPatientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexPatientServlet</servlet-name>
+    <url-pattern>/patient</url-pattern>
   </servlet-mapping>
 
 

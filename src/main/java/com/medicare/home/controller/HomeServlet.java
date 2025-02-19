@@ -1,4 +1,4 @@
-package com.home.controller;
+package com.medicare.home.controller;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,11 +16,8 @@ public class HomeServlet extends HttpServlet {
         throws ServletException, IOException
     {
         // get data from database
-        req.setAttribute("patient", "youssef");
 
-        System.out.println(req.getAttribute("patient"));
-
-        RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/pages/home.jsp");
         rd.forward(req, res);
     }
 
