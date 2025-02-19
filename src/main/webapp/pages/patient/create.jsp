@@ -40,11 +40,44 @@
            <h1 class="text-3xl">New patient </h1>
            <a href="#" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New product</a>
        </div>
-       <div class="container mx-auto my-4">
-           <div class="relative overflow-x-auto">
-               new patient
-           </div>
-       </div>
+
+       <div class="container mx-auto flex justify-center items-center">
+          <form class="w-4/5" action="/MediCare/patient/create" method="POST">
+              <div class="grid grid-cols-10 gap-3">
+                  <div class="w-full col-span-5">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-name">
+                      Patient Name
+                      </label>
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-name" type="text" placeholder="Patient Name" name="name">
+                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                  </div>
+                  <div class="w-full col-span-5">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-username">
+                      Username
+                      </label>
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-username" type="text" placeholder="Patient Username" name="username">
+                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                  </div>
+                  <div class="w-full col-span-5">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-email">
+                      Email
+                      </label>
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Email" name="email">
+                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                  </div>
+                  <div class="w-full col-span-5">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-phone">
+                        Phone
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Phone" name="phone">
+                        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                  </div>
+                  <div class="w-full col-span-10">
+                       <input class="appearance-none block w-full bg-blue-700 text-white border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-product-price" type="submit" value="Create new Patient">
+                  </div>
+              </div>
+          </form>
+      </div>
 
        <footer class="bg-white  shadow-sm dark:bg-gray-900">
             <div class="w-full max-w-screen-xl mx-auto">

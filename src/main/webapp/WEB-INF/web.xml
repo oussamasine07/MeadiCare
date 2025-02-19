@@ -28,5 +28,14 @@
     <url-pattern>/patient</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>CreatePatientServlet</servlet-name>
+    <servlet-class>com.medicare.patient.controller.CreatePatientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreatePatientServlet</servlet-name>
+    <url-pattern>/patient/create</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>

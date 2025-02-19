@@ -17,6 +17,7 @@ public class PatientDAO extends Connect {
     // sql code
     private static String ALL_PATIENTS  = "SELECT * FROM patients;";
     private static String GET_PATIENT_BY_ID = "SELECT * FROM patients WHERE id = ?";
+    private static String INSERT_NEW_PATIENT = "INSERT INTO patients (name, username, email, phone) VALUES (?, ?, ?, ?)";
 
     public List<Patient> getPatients () {
         List<Patient> patients = new ArrayList<Patient>();
@@ -46,6 +47,22 @@ public class PatientDAO extends Connect {
         return patients;
     }
 
+    public void inserPatient ( Patient patient ) {
+        try (
+           Connection con = getConnection();
+           PreparedStatement stmt = con.prepareStatement(INSERT_NEW_PATIENT);
+        ){
+            stmt.setString(1, patient.getName());
+            stmt.setString(2, patient.getUsername());
+            stmt.setString(3, patient.getEmail());
+            stmt.setString(4, patient.getPhone());
+
+            stmt.executeUpdate();
+        }
+        catch ( SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
