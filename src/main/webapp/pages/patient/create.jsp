@@ -1,4 +1,5 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="java.util.ArrayList, com.medicare.validateinput.InputError" %>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -41,6 +42,17 @@
            <a href="#" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New product</a>
        </div>
 
+       <%
+           // Retrieve errors attribute from session
+           Object errorObject = session.getAttribute("errors");
+
+           // Ensure the object is not null and is of the expected type
+           ArrayList<InputError> errors = null;
+           if (errorObject instanceof ArrayList) {
+               errors = (ArrayList<InputError>) errorObject;
+           }
+       %>
+
        <div class="container mx-auto flex justify-center items-center">
           <form class="w-4/5" action="/MediCare/patient/create" method="POST">
               <div class="grid grid-cols-10 gap-3">
@@ -49,28 +61,61 @@
                       Patient Name
                       </label>
                       <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-name" type="text" placeholder="Patient Name" name="name">
-                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+
+                        <c:if test="${errors != null}">
+                            <c:forEach var="err" items="${errors}" >
+                                <c:if test="${err.errorField == 'name'}">
+                                    <p class="text-red-500 text-xs italic">
+                                        <c:out value="${err.errorMessage}" />
+                                    </p>
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
                   </div>
                   <div class="w-full col-span-5">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-username">
                       Username
                       </label>
                       <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-username" type="text" placeholder="Patient Username" name="username">
-                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                      <c:if test="${errors != null}">
+                          <c:forEach var="err" items="${errors}" >
+                              <c:if test="${err.errorField == 'username'}">
+                                  <p class="text-red-500 text-xs italic">
+                                      <c:out value="${err.errorMessage}" />
+                                  </p>
+                              </c:if>
+                          </c:forEach>
+                      </c:if>
                   </div>
                   <div class="w-full col-span-5">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-email">
                       Email
                       </label>
                       <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Email" name="email">
-                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                      <c:if test="${errors != null}">
+                        <c:forEach var="err" items="${errors}" >
+                            <c:if test="${err.errorField == 'email'}">
+                                <p class="text-red-500 text-xs italic">
+                                    <c:out value="${err.errorMessage}" />
+                                </p>
+                            </c:if>
+                        </c:forEach>
+                      </c:if>
                   </div>
                   <div class="w-full col-span-5">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-phone">
                         Phone
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Phone" name="phone">
-                        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                        <c:if test="${errors != null}">
+                            <c:forEach var="err" items="${errors}" >
+                                <c:if test="${err.errorField == 'phone'}">
+                                    <p class="text-red-500 text-xs italic">
+                                        <c:out value="${err.errorMessage}" />
+                                    </p>
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
                   </div>
                   <div class="w-full col-span-10">
                        <input class="appearance-none block w-full bg-blue-700 text-white border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-product-price" type="submit" value="Create new Patient">

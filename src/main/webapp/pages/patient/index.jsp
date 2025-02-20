@@ -38,7 +38,7 @@
 
        <div class="container flex justify-between items-center mb-5 py-3 mx-auto">
            <h1 class="text-3xl">All patients </h1>
-           <a href="#" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New product</a>
+           <a href="/MediCare/patient/create" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New product</a>
        </div>
        <div class="container mx-auto my-4">
            <div class="relative overflow-x-auto">
