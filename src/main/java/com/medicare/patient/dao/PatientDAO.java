@@ -17,6 +17,7 @@ public class PatientDAO extends Connect {
     // sql code
     private static String ALL_PATIENTS  = "SELECT * FROM patients;";
     private static String GET_PATIENT_BY_ID = "SELECT * FROM patients WHERE id = ?";
+    private static String GET_PATIENT_BY_USERNAME = "SELECT * FROM patients WHERE username = ?";
     private static String INSERT_NEW_PATIENT = "INSERT INTO patients (name, username, email, phone) VALUES (?, ?, ?, ?)";
 
     public List<Patient> getPatients () {
@@ -45,6 +46,56 @@ public class PatientDAO extends Connect {
         }
 
         return patients;
+    }
+
+    public Patient getPatientById ( int patientId ) {
+        Patient patient = null;
+        try (
+             Connection con = getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_PATIENT_BY_ID)
+        ){
+            stmt.setInt(1, patientId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = Integer.parseInt(rs.getString("id"));
+                String name = rs.getString("name");
+                String username = rs.getString("username");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+
+                patient = new Patient(id, name, username, email, phone);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patient;
+    }
+
+    public Patient getPatientByUsername ( String patientUsername ) {
+        Patient patient = null;
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(GET_PATIENT_BY_USERNAME)
+        ){
+            stmt.setString(1, patientUsername);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = Integer.parseInt(rs.getString("id"));
+                String name = rs.getString("name");
+                String username = rs.getString("username");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+
+                patient = new Patient(id, name, username, email, phone);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patient;
     }
 
     public void inserPatient ( Patient patient ) {

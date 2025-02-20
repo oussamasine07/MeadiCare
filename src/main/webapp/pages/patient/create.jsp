@@ -1,5 +1,5 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<%@ page import="java.util.ArrayList, com.medicare.validateinput.InputError" %>
+<%@ page import="java.util.ArrayList, java.util.Map, com.medicare.validateinput.InputError, com.medicare.validateinput.Input" %>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -51,6 +51,27 @@
            if (errorObject instanceof ArrayList) {
                errors = (ArrayList<InputError>) errorObject;
            }
+
+
+            Input old = (Input) session.getAttribute("fieldOld");
+            String name = null;
+            String username = null;
+            String email = null;
+            String phone = null;
+
+            if (old != null) {
+                name = old.getOld("name");
+                username = old.getOld("username");
+                email = old.getOld("email");
+                phone = old.getOld("phone");
+                request.setAttribute("name", name);
+                request.setAttribute("username", username);
+                request.setAttribute("phone", phone);
+                request.setAttribute("email", email);
+            }
+
+
+
        %>
 
        <div class="container mx-auto flex justify-center items-center">
@@ -60,7 +81,11 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-name">
                       Patient Name
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-name" type="text" placeholder="Patient Name" name="name">
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-name" type="text" placeholder="Patient Name" name="name"
+                            <c:if test="${name != null}">
+                                value="<c:out value='${name}' />"
+                            </c:if>
+                      >
 
                         <c:if test="${errors != null}">
                             <c:forEach var="err" items="${errors}" >
@@ -76,7 +101,11 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-username">
                       Username
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-username" type="text" placeholder="Patient Username" name="username">
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-username" type="text" placeholder="Patient Username" name="username"
+                            <c:if test="${username != null}">
+                                value="<c:out value='${username}' />"
+                            </c:if>
+                      >
                       <c:if test="${errors != null}">
                           <c:forEach var="err" items="${errors}" >
                               <c:if test="${err.errorField == 'username'}">
@@ -91,7 +120,11 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-email">
                       Email
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Email" name="email">
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Email" name="email"
+                        <c:if test="${email != null}">
+                            value="<c:out value='${email}' />"
+                        </c:if>
+                      >
                       <c:if test="${errors != null}">
                         <c:forEach var="err" items="${errors}" >
                             <c:if test="${err.errorField == 'email'}">
@@ -106,7 +139,11 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-patient-phone">
                         Phone
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Phone" name="phone">
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-patient-email" type="text" placeholder="Patient Phone" name="phone"
+                            <c:if test="${phone != null}">
+                                value="<c:out value='${phone}' />"
+                            </c:if>
+                        >
                         <c:if test="${errors != null}">
                             <c:forEach var="err" items="${errors}" >
                                 <c:if test="${err.errorField == 'phone'}">

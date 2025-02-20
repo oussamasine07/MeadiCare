@@ -2,6 +2,7 @@ package com.medicare.patient.controller;
 
 import com.medicare.patient.dao.PatientDAO;
 import com.medicare.patient.model.Patient;
+import com.medicare.validateinput.Input;
 import com.medicare.validateinput.InputError;
 import com.medicare.validateinput.Validate;
 import jakarta.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreatePatientServlet extends HttpServlet {
 
@@ -43,16 +46,29 @@ public class CreatePatientServlet extends HttpServlet {
 
         if ( Validate.validateEmpty("name", name) != null ) errors.add(Validate.validateEmpty("name", name));
         if ( Validate.validateEmpty("username", username) != null ) errors.add(Validate.validateEmpty("username", username));
+        if ( patientDAO.getPatientByUsername( username ) != null ) errors.add(new InputError("username", "this username is already taken"));
         if ( Validate.validateEmpty("email", email) != null ) errors.add(Validate.validateEmpty("email", email));
         if ( Validate.validateEmail("email", email) != null ) errors.add(Validate.validateEmail("email", email));
         if ( Validate.validateEmpty("phone", phone) != null ) errors.add(Validate.validateEmpty("phone", phone));
         if ( Validate.validatePhone("phone", phone) != null ) errors.add(Validate.validatePhone("phone", phone));
 
-        errors.forEach(err -> System.out.println(err.errorField));
-
         if (!errors.isEmpty()) {
             HttpSession session = req.getSession();
             session.setAttribute("errors", errors);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("name", name);
+            map.put("username", username);
+            map.put("email", email);
+            map.put("phone", phone);
+
+
+            session.setAttribute("fieldOld", new Input(map));
+            //Input old = new Input((Map<String, String>) session.getAttribute("fieldOld"));
+            Input old = (Input) session.getAttribute("fieldOld");
+            //System.out.println(session.getAttribute("fieldOld"));
+            //System.out.println(old.getOld("name"));
+
             res.sendRedirect("/MediCare/patient/create");
         } else {
             Patient patient = new Patient( name, username, email, phone );
