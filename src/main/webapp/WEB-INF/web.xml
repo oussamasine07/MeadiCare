@@ -20,6 +20,24 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>IndexServletDoctor</servlet-name>
+    <servlet-class>com.medicare.doctor.controller.IndexServletDoctor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServletDoctor</servlet-name>
+    <url-pattern>/doctor</url-pattern>
+  </servlet-mapping>
+
+<!--  <servlet>-->
+<!--    <servlet-name>CreateServletDoctor</servlet-name>-->
+<!--    <servlet-class>com.medicare.doctor.controller.CreateServletDoctor</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>CreateServletDoctor</servlet-name>-->
+<!--    <url-pattern>/doctor/create</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+  <servlet>
     <servlet-name>IndexPatientServlet</servlet-name>
     <servlet-class>com.medicare.patient.controller.IndexPatientServlet</servlet-class>
   </servlet>
@@ -36,6 +54,8 @@
     <servlet-name>CreatePatientServlet</servlet-name>
     <url-pattern>/patient/create</url-pattern>
   </servlet-mapping>
+
+
 
 
 </web-app>

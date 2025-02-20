@@ -64,16 +64,12 @@ public class CreatePatientServlet extends HttpServlet {
 
 
             session.setAttribute("fieldOld", new Input(map));
-            //Input old = new Input((Map<String, String>) session.getAttribute("fieldOld"));
-            Input old = (Input) session.getAttribute("fieldOld");
-            //System.out.println(session.getAttribute("fieldOld"));
-            //System.out.println(old.getOld("name"));
 
             res.sendRedirect("/MediCare/patient/create");
         } else {
             Patient patient = new Patient( name, username, email, phone );
 
-            // patientDAO.inserPatient( patient );
+            patientDAO.inserPatient( patient );
 
             res.sendRedirect("/MediCare/patient");
         }

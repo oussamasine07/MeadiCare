@@ -37,8 +37,8 @@
         </nav>
 
        <div class="container flex justify-between items-center mb-5 py-3 mx-auto">
-           <h1 class="text-3xl">All patients </h1>
-           <a href="/MediCare/patient/create" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New Patient</a>
+           <h1 class="text-3xl">All doctors</h1>
+           <a href="/MediCare/doctor/create" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New Patient</a>
        </div>
        <div class="container mx-auto my-4">
            <div class="relative overflow-x-auto">
@@ -49,7 +49,7 @@
                                #ID
                            </th>
                            <th scope="col" class="px-6 py-3">
-                               Patient name
+                               Doctor name
                            </th>
                            <th scope="col" class="px-6 py-3">
                                username
@@ -67,26 +67,26 @@
                    </thead>
 
                    <tbody>
-                        <c:forEach var="patient" items="${ patients }">
+                        <c:forEach var="doctor" items="${ doctors }">
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <c:out value="${patient.id}" />
+                                    <c:out value="${doctor.id}" />
                                 </th>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <c:out value="${patient.name}" />
+                                    <c:out value="${doctor.name}" />
                                 </th>
                                 <td class="px-6 py-4">
-                                    <c:out value="${patient.username}" />
+                                    <c:out value="${doctor.username}" />
                                 </td>
                                 <td class="px-6 py-4">
-                                    <c:out value="${patient.email}" />
+                                    <c:out value="${doctor.email}" />
                                 </td>
                                 <td class="px-6 py-4">
-                                    <c:out value="${patient.phone}" />
+                                    <c:out value="${doctor.phone}" />
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="/MediCare/patient/appointment?id=<c:out value='${patient.id}' />">Set appointment</a>
-                                    <form action="/MediCare/delete?id=<c:out value='${patient.id}' />" method="POST">
+                                    <a href="/MediCare/doctor/appointment?id=<c:out value='${doctor.id}' />">Set appointment</a>
+                                    <form action="/MediCare/delete?id=<c:out value='${doctor.id}' />" method="POST">
                                         <button type="submit">Delete</button>
                                     </form>
                                 </td>
