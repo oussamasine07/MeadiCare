@@ -82,6 +82,15 @@
     <url-pattern>/appointment/patient</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>CreatePatientAppointmentServlet</servlet-name>
+    <servlet-class>com.medicare.appointment.controller.CreatePatientAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreatePatientAppointmentServlet</servlet-name>
+    <url-pattern>/appointment/patient/create</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>
