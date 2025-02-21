@@ -28,14 +28,14 @@
     <url-pattern>/doctor</url-pattern>
   </servlet-mapping>
 
-<!--  <servlet>-->
-<!--    <servlet-name>CreateServletDoctor</servlet-name>-->
-<!--    <servlet-class>com.medicare.doctor.controller.CreateServletDoctor</servlet-class>-->
-<!--  </servlet>-->
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>CreateServletDoctor</servlet-name>-->
-<!--    <url-pattern>/doctor/create</url-pattern>-->
-<!--  </servlet-mapping>-->
+  <servlet>
+    <servlet-name>CreateServletDoctor</servlet-name>
+    <servlet-class>com.medicare.doctor.controller.CreateServletDoctor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateServletDoctor</servlet-name>
+    <url-pattern>/doctor/create</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>IndexPatientServlet</servlet-name>
@@ -53,6 +53,15 @@
   <servlet-mapping>
     <servlet-name>CreatePatientServlet</servlet-name>
     <url-pattern>/patient/create</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>IndexAppointmentServlet</servlet-name>
+    <servlet-class>com.medicare.appointment.controller.IndexAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexAppointmentServlet</servlet-name>
+    <url-pattern>/appointment</url-pattern>
   </servlet-mapping>
 
 
