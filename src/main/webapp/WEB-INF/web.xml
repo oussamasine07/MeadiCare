@@ -64,6 +64,15 @@
     <url-pattern>/appointment</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>IndexDoctorAppointmentServlet</servlet-name>
+    <servlet-class>com.medicare.appointment.controller.IndexDoctorAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexDoctorAppointmentServlet</servlet-name>
+    <url-pattern>/appointment/doctor</url-pattern>
+  </servlet-mapping>
+
 
 
 

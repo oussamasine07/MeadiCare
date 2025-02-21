@@ -37,17 +37,24 @@
         </nav>
 
        <div class="container flex justify-between items-center mb-5 py-3 mx-auto">
-           <h1 class="text-3xl">All doctors</h1>
-           <a href="/MediCare/doctor/create" class="btn bg-blue-700 block py-3 px-6 font-bold text-white rounded">New Patient</a>
+           <h1 class="text-3xl">All appointments</h1>
        </div>
 
-       <div class="container mx-auto my-4">
-           <div class="flex justify-center items-center">
-                <h1 class="mr-10 font-bold text-2xl text-gray-700">Are you a </h1>
-                <a class="block btn bg-red-700 block py-3 px-6 font-bold text-white rounded" href="/MediCare/appointment/doctor">A Doctor</a>
-                <p class="mx-6 font-bold text-xl text-gray-500">OR</p>
-                <a class="block btn bg-yellow-700 block py-3 px-6 font-bold text-white rounded" href="#">A Patient</a>
-           </div>
+       <div class="container mx-auto my-4 flex justify-center items-center">
+            <form class="w-4/5" action="/MediCare/appointment/doctor" method="POST">
+                  <div class="grid grid-cols-10 gap-3">
+                      <div class="w-full col-span-10">
+                          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-doctor-username">
+                          username
+                          </label>
+                          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-username" type="text" placeholder="please enter you username" name="username">
+                      </div>
+
+                      <div class="w-full col-span-10">
+                           <input class="appearance-none block w-full bg-blue-700 text-white border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-product-price" type="submit" value="Find my appointments">
+                      </div>
+                  </div>
+              </form>
        </div>
 
        <footer class="bg-white  shadow-sm dark:bg-gray-900">
