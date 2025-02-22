@@ -52,22 +52,7 @@
            }
 
 
-            Input old = (Input) session.getAttribute("fieldOld");
-            String name = null;
-            String username = null;
-            String email = null;
-            String phone = null;
 
-            if (old != null) {
-                name = old.getOld("name");
-                username = old.getOld("username");
-                email = old.getOld("email");
-                phone = old.getOld("phone");
-                request.setAttribute("name", name);
-                request.setAttribute("username", username);
-                request.setAttribute("phone", phone);
-                request.setAttribute("email", email);
-            }
 
 
 
@@ -78,33 +63,28 @@
               <div class="grid grid-cols-10 gap-3">
 
                   <div class="w-full col-span-5">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-appointment-username">
-                      Username
-                      </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-appointment-username" type="text" placeholder="enter patient username" name="username"
-                            <c:if test="${username != null}">
-                                value="<c:out value='${username}' />"
-                            </c:if>
-                      >
-                      <c:if test="${errors != null}">
-                          <c:forEach var="err" items="${errors}" >
-                              <c:if test="${err.errorField == 'username'}">
-                                  <p class="text-red-500 text-xs italic">
-                                      <c:out value="${err.errorMessage}" />
-                                  </p>
-                              </c:if>
-                          </c:forEach>
-                      </c:if>
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-product-category">
+                           Patient name:
+                        </label>
+                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="patientId">
+                               <c:forEach var="patient" items="${patients}" >
+                                    <option value="<c:out value='${patient.id}' />">
+                                        <c:out value='${patient.name}' />
+                                    </option>
+                               </c:forEach>
+                        </select>
                   </div>
                   <div class="w-full col-span-5">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-appointment-doctor">
                       Doctor
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-appointment-date" type="text" placeholder="Enter doctor name" name="doctor"
-                        <c:if test="${date != null}">
-                            value="<c:out value='${date}' />"
-                        </c:if>
-                      >
+                      <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="doctorId">
+                             <c:forEach var="doctor" items="${doctors}" >
+                                  <option value="<c:out value='${doctor.id}' />">
+                                      <c:out value='${doctor.name}' />
+                                  </option>
+                             </c:forEach>
+                      </select>
                       <c:if test="${errors != null}">
                         <c:forEach var="err" items="${errors}" >
                             <c:if test="${err.errorField == 'date'}">
@@ -119,7 +99,7 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-doctor-phone">
                         Date
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-email" type="text" placeholder="Doctor Phone" name="date"
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-email" type="date" placeholder="Doctor Phone" name="date"
                             <c:if test="${date != null}">
                                 value="<c:out value='${date}' />"
                             </c:if>
@@ -138,7 +118,7 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-doctor-phone">
                       Time
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-email" type="text" placeholder="Doctor Phone" name="time"
+                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-email" type="time" placeholder="Doctor Phone" name="time"
                           <c:if test="${time != null}">
                               value="<c:out value='${time}' />"
                           </c:if>
@@ -158,7 +138,7 @@
                       motif
                       </label>
                       <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-email" type="text" placeholder="enter a motif" name="motif"
-                          <c:if test="${time != null}">
+                          <c:if test="${motif != null}">
                               value="<c:out value='${motif}' />"
                           </c:if>
                       >

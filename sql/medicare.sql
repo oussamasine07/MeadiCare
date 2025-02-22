@@ -29,5 +29,32 @@ CREATE TABLE doctors (
 
 CREATE TABLE appointments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    appDate DATE NOT NULL,
+    appTime TIME NOT NULL,
+    motif VARCHAR(255) NOT NULL
 );
+
+INSERT INTO appointments
+    (patient_id, doctor_id, appDate, appTime, motif )
+VALUES
+    (1, 1, "11-21-2025", "20:20");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

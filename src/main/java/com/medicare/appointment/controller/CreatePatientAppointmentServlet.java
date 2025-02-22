@@ -1,5 +1,10 @@
 package com.medicare.appointment.controller;
 
+import com.medicare.appointment.dao.AppointmentDAO;
+import com.medicare.appointment.model.Appointment;
+import com.medicare.doctor.dao.DoctorDAO;
+import com.medicare.doctor.model.Doctor;
+import com.medicare.patient.dao.PatientDAO;
 import com.medicare.patient.model.Patient;
 import com.medicare.validateinput.Input;
 import com.medicare.validateinput.InputError;
@@ -14,18 +19,31 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CreatePatientAppointmentServlet extends HttpServlet {
 
-    public void init () {
+    PatientDAO patientDAO = null;
+    DoctorDAO doctorDAO = null;
+    AppointmentDAO appointmentDAO = null;
 
+    public void init () {
+        patientDAO = new PatientDAO();
+        doctorDAO = new DoctorDAO();
+        appointmentDAO = new AppointmentDAO();
     }
 
     public void doGet (HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException
     {
+        // get all patients
+        List<Patient> patients = patientDAO.getPatients();
+        // get all doctors
+        List<Doctor> doctors = doctorDAO.getDoctors();
 
+        req.setAttribute("patients", patients);
+        req.setAttribute("doctors", doctors);
         RequestDispatcher rd = req.getRequestDispatcher("/pages/appointment/create-appointment.jsp");
         rd.forward(req, res);
     }
@@ -35,39 +53,37 @@ public class CreatePatientAppointmentServlet extends HttpServlet {
     {
         ArrayList<InputError> errors = new ArrayList<>();
 
-        String name = req.getParameter("name");
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
-        String phone = req.getParameter("phone");
+        int patientId = Integer.parseInt(req.getParameter("patientId"));
+        int doctorId = Integer.parseInt(req.getParameter("patientId"));
+        String appDate = req.getParameter("date");
+        String appTime = req.getParameter("time");
+        String motif = req.getParameter("motif");
 
-        if ( Validate.validateEmpty("name", name) != null ) errors.add(Validate.validateEmpty("name", name));
-        if ( Validate.validateEmpty("username", username) != null ) errors.add(Validate.validateEmpty("username", username));
-        //if ( patientDAO.getPatientByUsername( username ) != null ) errors.add(new InputError("username", "this username is already taken"));
-        if ( Validate.validateEmpty("email", email) != null ) errors.add(Validate.validateEmpty("email", email));
-        if ( Validate.validateEmail("email", email) != null ) errors.add(Validate.validateEmail("email", email));
-        if ( Validate.validateEmpty("phone", phone) != null ) errors.add(Validate.validateEmpty("phone", phone));
-        if ( Validate.validatePhone("phone", phone) != null ) errors.add(Validate.validatePhone("phone", phone));
+
+        if ( Validate.validateEmpty("date", appDate) != null ) errors.add(Validate.validateEmpty("date", appDate));
+        if ( Validate.validateEmpty("time", appTime) != null ) errors.add(Validate.validateEmpty("time", appTime));
+        if ( Validate.validateEmpty("motif", motif) != null ) errors.add(Validate.validateEmpty("motif", motif));
 
         if (!errors.isEmpty()) {
             HttpSession session = req.getSession();
             session.setAttribute("errors", errors);
 
-            Map<String, String> map = new HashMap<>();
-            map.put("name", name);
-            map.put("username", username);
-            map.put("email", email);
-            map.put("phone", phone);
+            errors.forEach(err -> System.out.println(err.errorMessage));
 
+            Map<String, String> map = new HashMap<>();
+            map.put("date", appDate);
+            map.put("time", appTime);
+            map.put("motif", motif);
 
             session.setAttribute("fieldOld", new Input(map));
 
-            res.sendRedirect("/MediCare/patient/create");
+            res.sendRedirect("/MediCare/appointment/patient/create");
         } else {
-            Patient patient = new Patient( name, username, email, phone );
+            Appointment appointment = new Appointment( patientId, doctorId, appDate, appTime, motif );
 
-            //patientDAO.inserPatient( patient );
+            appointmentDAO.insetAppointment( appointment );
 
-            res.sendRedirect("/MediCare/patient");
+            res.sendRedirect("/MediCare/appointment/patient");
         }
     }
 }
