@@ -36,9 +36,6 @@ public class IndexPatientAppointmentServlet extends HttpServlet {
             appointments.forEach(app -> System.out.println(app.getMotif()));
         }
 
-
-
-
         RequestDispatcher rd = req.getRequestDispatcher("/pages/appointment/patient-appointment.jsp");
         rd.forward(req, res);
     }

@@ -37,17 +37,23 @@
         </nav>
 
        <div class="container flex justify-between items-center mb-5 py-3 mx-auto">
-           <h1 class="text-3xl">All appointments</h1>
+           <h1 class="text-3xl">Doctor appointments</h1>
        </div>
 
        <div class="container mx-auto my-4 flex justify-center items-center">
-            <form class="w-4/5" action="/MediCare/appointment/doctor" method="POST">
+            <form class="w-4/5" action="/MediCare/appointment/doctor" method="GET">
                   <div class="grid grid-cols-10 gap-3">
                       <div class="w-full col-span-10">
                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-doctor-username">
-                          username
-                          </label>
-                          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-username" type="text" placeholder="please enter you username" name="username">
+                            Doctor
+                            </label>
+                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="doctorId">
+                                   <c:forEach var="doctor" items="${doctors}" >
+                                        <option value="<c:out value='${doctor.id}' />">
+                                            <c:out value='${doctor.name}' />
+                                        </option>
+                                   </c:forEach>
+                            </select>
                       </div>
 
                       <div class="w-full col-span-10">
