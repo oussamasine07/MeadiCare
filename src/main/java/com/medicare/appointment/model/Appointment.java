@@ -18,7 +18,7 @@ public class Appointment {
         this.motif = motif;
     }
 
-    public Appointment(String appDate, String appTime, String motif) {
+    public Appointment(int id, String appDate, String appTime, String motif) {
         this.id = id;
         this.patientId = patientId;
         this.doctorId = doctorId;

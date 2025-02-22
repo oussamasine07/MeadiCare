@@ -15,6 +15,7 @@ public class AppointmentDAO extends Connect {
 
     private static final String INSERT_INTO_APPOINTMENT = "INSERT INTO appointments (patient_id, doctor_id, appDate, appTime, motif ) VALUES(?, ?, ?, ?, ?);";
     private static final String GET_APPOINTMENTS_BY_PATIENT_ID = "SELECT * FROM appointments WHERE patient_id = ?;";
+    private static final String CANCEL_APPOINTMENT = "UPDATE appointments SET is_canceled = TRUE WHERE id = ?;";
 
     public void insetAppointment (Appointment appointment) {
         try (
@@ -33,7 +34,7 @@ public class AppointmentDAO extends Connect {
         }
     }
 
-    public List<Appointment> getAppointmentByPatientId (int patientId ) {
+    public List<Appointment> getAppointmentByPatientId ( int patientId ) {
         List<Appointment> appointments = new ArrayList<>();
 
         try (
@@ -44,11 +45,12 @@ public class AppointmentDAO extends Connect {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String appDate = rs.getString("appDate");
                 String appTime = rs.getString("appTime");
                 String motif = rs.getString("motif");
 
-                appointments.add(new Appointment(appDate, appTime, motif));
+                appointments.add(new Appointment(id, appDate, appTime, motif));
 
             }
         }
@@ -57,6 +59,19 @@ public class AppointmentDAO extends Connect {
         }
 
         return appointments;
+    }
+
+    public void cancelAppointment ( int appointmentId ) {
+        try (
+            Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(CANCEL_APPOINTMENT);
+        ){
+            stmt.setInt(1, appointmentId);
+            stmt.executeUpdate();
+        }
+        catch ( SQLException e ) {
+            e.printStackTrace();
+        }
     }
 
 }

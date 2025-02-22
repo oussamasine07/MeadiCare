@@ -34,7 +34,7 @@ CREATE TABLE appointments (
     appDate DATE NOT NULL,
     appTime TIME NOT NULL,
     motif VARCHAR(255) NOT NULL,
-    is_canceled BOOLEAN NOT NULL DEFAULT TRUE
+    is_canceled BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 INSERT INTO appointments
@@ -45,7 +45,8 @@ VALUES
 SELECT * FROM appointments
 WHERE patient_id = 1;
 
-
+UPDATE appointments
+SET is_canceled = TRUE WHERE patient_id = 1;
 
 
 

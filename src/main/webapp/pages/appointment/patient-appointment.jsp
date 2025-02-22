@@ -106,7 +106,7 @@
                                           <c:out value="${appointment.motif}" />
                                       </td>
                                       <td class="px-6 py-4">
-                                          <form action="/MediCare/appointment/cancel?patientId=<c:out value='${appointment.appTime}' />" method="POST">
+                                          <form action="/MediCare/appointment/cancel?id=<c:out value='${appointment.id}' />" method="POST">
                                               <button type="submit">cancel</button>
                                           </form>
                                       </td>

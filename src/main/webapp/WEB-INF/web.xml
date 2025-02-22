@@ -91,6 +91,15 @@
     <url-pattern>/appointment/patient/create</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>CancelPatientAppointmentServlet</servlet-name>
+    <servlet-class>com.medicare.appointment.controller.CancelPatientAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CancelPatientAppointmentServlet</servlet-name>
+    <url-pattern>/appointment/cancel</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>
