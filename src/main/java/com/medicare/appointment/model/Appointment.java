@@ -18,6 +18,15 @@ public class Appointment {
         this.motif = motif;
     }
 
+    public Appointment(String appDate, String appTime, String motif) {
+        this.id = id;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.appDate = appDate;
+        this.appTime = appTime;
+        this.motif = motif;
+    }
+
     public Appointment(int patientId, int doctorId, String appDate, String appTime, String motif) {
         this.patientId = patientId;
         this.doctorId = doctorId;

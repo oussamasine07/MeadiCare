@@ -42,13 +42,19 @@
        </div>
 
        <div class="container mx-auto my-4 flex justify-center items-center">
-            <form class="w-4/5" action="/MediCare/appointment/doctor" method="POST">
+            <form class="w-4/5" action="/MediCare/appointment/patient" method="GET">
                   <div class="grid grid-cols-10 gap-3">
                       <div class="w-full col-span-10">
                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-doctor-username">
-                          username
+                          Patient
                           </label>
-                          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-doctor-username" type="text" placeholder="please enter you username" name="username">
+                          <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="patientId">
+                                 <c:forEach var="patient" items="${patients}" >
+                                      <option value="<c:out value='${patient.id}' />">
+                                          <c:out value='${patient.name}' />
+                                      </option>
+                                 </c:forEach>
+                          </select>
                       </div>
 
                       <div class="w-full col-span-10">
@@ -56,6 +62,60 @@
                       </div>
                   </div>
               </form>
+
+
+       </div>
+
+       <div class="container mx-auto mb-6">
+            <c:if test="${appointments != null }" >
+                <div class="relative overflow-x-auto">
+                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                             <tr>
+                                 <th scope="col" class="px-6 py-3">
+                                     #ID
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                     Date
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                     Time
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                     motif
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                     Actions
+                                 </th>
+                             </tr>
+                         </thead>
+
+                         <tbody>
+                              <c:forEach var="appointment" items="${ appointments }">
+                                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                          <c:out value="${appointment.id}" />
+                                      </th>
+                                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                          <c:out value="${appointment.appDate}" />
+                                      </th>
+                                      <td class="px-6 py-4">
+                                          <c:out value="${appointment.appTime}" />
+                                      </td>
+                                      <td class="px-6 py-4">
+                                          <c:out value="${appointment.motif}" />
+                                      </td>
+                                      <td class="px-6 py-4">
+                                          <form action="/MediCare/appointment/cancel?patientId=<c:out value='${appointment.appTime}' />" method="POST">
+                                              <button type="submit">cancel</button>
+                                          </form>
+                                      </td>
+                                  </tr>
+                              </c:forEach>
+                         </tbody>
+                     </table>
+                 </div>
+            </c:if>
        </div>
 
        <footer class="bg-white  shadow-sm dark:bg-gray-900">

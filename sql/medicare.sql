@@ -33,13 +33,17 @@ CREATE TABLE appointments (
     doctor_id INT NOT NULL,
     appDate DATE NOT NULL,
     appTime TIME NOT NULL,
-    motif VARCHAR(255) NOT NULL
+    motif VARCHAR(255) NOT NULL,
+    is_canceled BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 INSERT INTO appointments
     (patient_id, doctor_id, appDate, appTime, motif )
 VALUES
     (1, 1, "11-21-2025", "20:20");
+
+SELECT * FROM appointments
+WHERE patient_id = 1;
 
 
 
