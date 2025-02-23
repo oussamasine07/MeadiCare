@@ -28,13 +28,14 @@ public class IndexDoctorAppointmentServlet extends HttpServlet {
     {
         List<Doctor> doctors = doctorDAO.getDoctors();
         req.setAttribute("doctors", doctors);
-
+        System.out.println(req.getParameter("doctorId"));
         if ( req.getParameter("doctorId") != null ) {
             int doctorId = Integer.parseInt(req.getParameter("doctorId"));
 
             List<Appointment> appointments = appointmentDAO.getAppointmentByDcotorId(doctorId);
+            appointments.forEach(app -> System.out.println(app.getPatient().getName()));
             req.setAttribute("appointments", appointments);
-            appointments.forEach(app -> System.out.println(app.getMotif()));
+
         }
 
 

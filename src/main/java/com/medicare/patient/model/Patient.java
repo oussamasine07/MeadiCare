@@ -25,6 +25,11 @@ public class Patient {
         this.phone = phone;
     }
 
+    public Patient ( String name, String phone ) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public int getId () { return this.id; }
 
     public String getName () { return this.name; }

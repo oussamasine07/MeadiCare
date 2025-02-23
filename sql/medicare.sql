@@ -49,6 +49,18 @@ UPDATE appointments
 SET is_canceled = TRUE WHERE patient_id = 1;
 
 
+SELECT
+	appointments.id,
+    appointments.appDate,
+    appointments.appTime,
+    appointments.motif,
+    patients.name,
+    patients.phone
+FROM appointments
+inner join patients
+on patients.id = appointments.patient_id
+where appointments.doctor_id = 1;
+
 
 
 
