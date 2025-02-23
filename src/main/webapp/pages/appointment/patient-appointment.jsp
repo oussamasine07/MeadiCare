@@ -76,6 +76,12 @@
                                      #ID
                                  </th>
                                  <th scope="col" class="px-6 py-3">
+                                      Doctor name
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                      doctor phone
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
                                      Date
                                  </th>
                                  <th scope="col" class="px-6 py-3">
@@ -97,7 +103,13 @@
                                           <c:out value="${appointment.id}" />
                                       </th>
                                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                          <c:out value="${appointment.appDate}" />
+                                          <c:out value="${appointment.doctor.name}" />
+                                      </th>
+                                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                           <c:out value="${appointment.doctor.phone}" />
+                                      </th>
+                                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                           <c:out value="${appointment.appDate}" />
                                       </th>
                                       <td class="px-6 py-4">
                                           <c:out value="${appointment.appTime}" />

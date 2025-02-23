@@ -100,6 +100,15 @@
     <url-pattern>/appointment/cancel</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>PostponeAppointmentServlet</servlet-name>
+    <servlet-class>com.medicare.appointment.controller.PostponeAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostponeAppointmentServlet</servlet-name>
+    <url-pattern>/appointment/postpone</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>

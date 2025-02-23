@@ -1,5 +1,6 @@
 package com.medicare.appointment.model;
 
+import com.medicare.doctor.model.Doctor;
 import com.medicare.patient.model.Patient;
 
 public class Appointment {
@@ -11,6 +12,7 @@ public class Appointment {
     private String appTime;
     private String motif;
     private Patient patient;
+    private Doctor doctor;
 
     public Appointment(int id, int patientId, int doctorId, String appDate, String appTime, String motif) {
         this.id = id;
@@ -21,12 +23,33 @@ public class Appointment {
         this.motif = motif;
     }
 
+    public Appointment(int id, String appDate, String appTime, String motif, Doctor doctor) {
+        this.id = id;
+        this.appDate = appDate;
+        this.appTime = appTime;
+        this.motif = motif;
+        this.doctor = doctor;
+    }
+
     public Appointment(int id, String appDate, String appTime, String motif, Patient patient) {
         this.id = id;
         this.appDate = appDate;
         this.appTime = appTime;
         this.motif = motif;
         this.patient = patient;
+    }
+
+    public Appointment(int id, String appDate, String appTime, Patient patient) {
+        this.id = id;
+        this.appDate = appDate;
+        this.appTime = appTime;
+        this.patient = patient;
+    }
+
+    public Appointment(int id, String appDate, String appTime) {
+        this.id = id;
+        this.appDate = appDate;
+        this.appTime = appTime;
     }
 
     public Appointment(int patientId, int doctorId, String appDate, String appTime, String motif) {
@@ -65,4 +88,6 @@ public class Appointment {
     }
 
     public Patient getPatient() { return this.patient; }
+
+    public Doctor getDoctor() { return this.doctor; }
 }

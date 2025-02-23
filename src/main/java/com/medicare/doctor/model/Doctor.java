@@ -24,6 +24,11 @@ public class Doctor {
         this.phone = phone;
     }
 
+    public Doctor ( String name, String phone ) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public int getId () { return this.id; }
 
     public String getName () { return this.name; }

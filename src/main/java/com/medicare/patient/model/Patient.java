@@ -30,6 +30,10 @@ public class Patient {
         this.phone = phone;
     }
 
+    public Patient ( String name ) {
+        this.name = name;
+    }
+
     public int getId () { return this.id; }
 
     public String getName () { return this.name; }

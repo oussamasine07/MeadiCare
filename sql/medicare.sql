@@ -48,6 +48,18 @@ WHERE patient_id = 1;
 UPDATE appointments
 SET is_canceled = TRUE WHERE patient_id = 1;
 
+SELECT
+	appointments.id,
+    appointments.appDate,
+    appointments.appTime,
+    appointments.motif,
+    doctors.name,
+    doctors.phone
+FROM appointments
+inner join doctors
+on doctors.id = appointments.doctor_id
+where appointments.patient_id = 1;
+
 
 SELECT
 	appointments.id,
@@ -60,6 +72,24 @@ FROM appointments
 inner join patients
 on patients.id = appointments.patient_id
 where appointments.doctor_id = 1;
+
+
+SELECT
+	appointments.id,
+    appointments.appDate,
+    appointments.appTime,
+    patients.name
+FROM appointments
+inner join patients
+on patients.id = appointments.patient_id
+where appointments.id = 1;
+
+UPDATE appointments
+SET
+    appDate = ?,
+    appTime = ?
+WHERE
+    appointments.id = ?;
 
 
 
